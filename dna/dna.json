@@ -85,7 +85,7 @@
             "BridgeTo": ""
         }
     ],
-    "RequiresVersion": 0,
+    "RequiresVersion": 18,
     "DHTConfig": {
         "HashType": "sha2-256",
         "NeighborhoodSize": 0
