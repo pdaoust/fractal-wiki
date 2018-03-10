@@ -15,6 +15,9 @@
             "Name": "Card",
             "Description": "",
             "CodeFile": "Card.js",
+            "Config":{
+              "ErrorHandling":"returnErrorValue"
+            },
             "Entries": [
                 {
                     "Name": "Card",
@@ -85,7 +88,7 @@
             "BridgeTo": ""
         }
     ],
-    "RequiresVersion": 18,
+    "RequiresVersion": 21,
     "DHTConfig": {
         "HashType": "sha2-256",
         "NeighborhoodSize": 0

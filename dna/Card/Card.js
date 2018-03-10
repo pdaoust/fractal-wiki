@@ -144,10 +144,6 @@ function validateLink(linkEntryType,baseHash,links,pkg,sources){
 
 function validateLinkPkg(entry_type) { return null;}
 
-function isErr (result) {
-  return ((typeof result === "object") && (result.name === "HolochainError"));
-}
-
 function cardCreate (param) {
   var card = {
     title: param.title,
@@ -174,7 +170,7 @@ function cardCreate (param) {
 }
 
 function cardRead (hash) {
-  return JSON.parse(get(hash, {GetMask:HC.GetMask.Entry}));
+  return get(hash, {GetMask:HC.GetMask.Entry});
 
 }
 
