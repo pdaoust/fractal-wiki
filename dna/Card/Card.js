@@ -144,6 +144,10 @@ function validateLink(linkEntryType,baseHash,links,pkg,sources){
 
 function validateLinkPkg(entry_type) { return null;}
 
+function anchor(anchorText) {
+  return call("anchors","anchor",{"anchorType":"Card", "anchorText": anchorText});
+}
+
 function cardCreate (param) {
   var card = {
     title: param.title,
@@ -154,8 +158,13 @@ function cardCreate (param) {
   }
   var hash = commit("Card", card);
 
-  debug("card title:" + card.title)
-  debug("card hash:" + hash)
+  debug("card title: " + card.title)
+  debug("card hash: " + hash)
+
+  if (!param.parentHash) {
+    param.parentHash = anchor("")
+  }
+  debug("parent: " + param.parentHash)
 
   if (param.parentHash) {
     debug("parent hash:" + param.parentHash)
@@ -194,8 +203,7 @@ function cardLink (params) {
 }
 
 function cardGetLinks(baseHash) {
-  // debug("HERE: ");
-  // debug(baseHash);
+   debug("cardGetLinks Base: " + baseHash);
   var links = getLinks(baseHash, "");
 
   var res = [];
