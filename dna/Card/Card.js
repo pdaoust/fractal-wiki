@@ -145,7 +145,7 @@ function validateLink(linkEntryType,baseHash,links,pkg,sources){
 function validateLinkPkg(entry_type) { return null;}
 
 function anchor(anchorText) {
-  return call("anchors","anchor",{"anchorType":"Card", "anchorText": anchorText});
+  return call("anchors","anchor",{"anchorType":"Card", "anchorText": anchorText}).replace(/"/g, '');  
 }
 
 function cardCreate (param) {
