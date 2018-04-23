@@ -17,12 +17,8 @@
             <textarea class="w3-input w3-border" v-model="content" name="name" rows="3" cols="80"></textarea>
           </div>
           <div class="w3-row w3-margin-top">
-            <label for="">Footnotes</label>
-            <textarea class="w3-input w3-border" v-model="footnotes" name="name" rows="3" cols="80"></textarea>
-          </div>
-          <div class="w3-row w3-margin-top">
             <button @click="$emit('please-close')" class="w3-button w3-gray w3-round-large" type="button" name="button">cancel</button>
-            <button @click="createCard()" class="w3-button w3-blue w3-round-large" type="button" name="button">create</button>
+            <button @click="saveCard()" class="w3-button w3-blue w3-round-large" type="button" name="button">create</button>
           </div>
           <div v-if="sentError" class="w3-row w3-margin-top">
             <div class="w3-panel w3-pale-green">
@@ -43,29 +39,46 @@ export default {
     parent: {
       type: Object,
       default: null
+    },
+    self: {
+      type: Object,
+      default: null
     }
   },
   data () {
     return {
       title: '',
       content: '',
-      footnotes: '',
       sentError: '',
       sentResult: ''
     }
   },
   methods: {
-    createCard () {
+    saveCard () {
+      if (this.self !== null) {
+        // Saving a previously created card.
+        send("cardUpdate", {
+          hash: this.self.hash,
+          title: this.title,
+          content: this.content
+        }, (data) => {
+          if (isErr(data)) {
+            this.sentResult = data;
+            this.sentError = true;
+          } else {
+            this.$emit('card-edited');
+            this.$emit('please-close');
+          }
+        })
+      }
       var parentHash = this.parent !== null ? this.parent.hash : ''
 
       send("cardCreate", {
         parentHash: parentHash,
         title: this.title,
         content: this.content,
-        footnotes: this.footnotes,
         showNew: false
       }, (data) => {
-
         if (isErr(data)) {
           this.sentResult = data;
           this.sentError = true;

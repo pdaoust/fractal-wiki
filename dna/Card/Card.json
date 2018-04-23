@@ -8,6 +8,9 @@
     "content": {
       "type": "string"
     },
+    "footnotes": {
+      "type": "string"
+    },
     "timestamp": {
       "type": "integer"
     },

@@ -152,6 +152,7 @@ function cardCreate (param) {
   var card = {
     title: param.title,
     content: param.content,
+    footnotes: param.footnotes,
     // timestamp
     timestamp: 123,
     version: 0

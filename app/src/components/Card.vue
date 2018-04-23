@@ -13,6 +13,7 @@
       <div class="w3-row w3-container">
         <h4>{{ card.title }}</h4>
         <p class="w3-left">{{ card.content }}</p>
+        <p class="w3-left footnotes">{{ card.footnotes }}</p>
       </div>
       <div v-if="subcardsShown" class="w3-row">
         <button @click="toggleSubcards()"
@@ -130,6 +131,11 @@ export default {
 .subcards-container {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.footnotes {
+  font-size: .8em;
+  color: #999;
 }
 
 </style>
